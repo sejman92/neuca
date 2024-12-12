@@ -1,18 +1,18 @@
 ﻿using AirlineBooking.Domain.Flights;
 
-namespace AirlineBooking.Persistence.Flight;
+namespace AirlineBooking.Persistence.Flights;
 
 public class FlightsRepository : IFlightsRepository
 {
-    private List<Domain.Flights.Flight> _flights = [];
+    private List<Flight> _flights = [];
     
-    public void AddFlight(Domain.Flights.Flight flight)
+    public void AddFlight(Flight flight)
     {
         _flights.Add(flight);
         Console.WriteLine($"Flight {flight.FlightId.FullId} has been added.");
     }
 
-    public Domain.Flights.Flight GetByFlightId(FlightId flightId)
+    public Flight GetByFlightId(FlightId flightId)
     {
         var flight = _flights.SingleOrDefault(x => x.FlightId.Equals(flightId));
 
