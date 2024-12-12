@@ -19,7 +19,7 @@ var serviceProvider = new ServiceCollection()
 
 var fms = serviceProvider.GetService<IFlightManagementService>();
 
-fms.AddFlight("abc", 123, "XXX", "Poland", "Italy", TimeSpan.FromHours(11), [DayOfWeek.Friday, DayOfWeek.Saturday], 30m);
+fms.AddFlight("abc", 123, "XXX", "Poland", "Africa", TimeSpan.FromHours(11), [DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday], 30m);
 
 var f = fms.GetByFlightId(FlightId.Create("abc", 123, "XXX"));
 

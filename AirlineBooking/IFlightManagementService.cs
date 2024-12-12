@@ -22,8 +22,9 @@ public class FlightManagementService : IFlightManagementService
     {
         var flightId = FlightId.Create(ianaCode, flightNumber, randomCode);
         var route = new Route(from, to);
-        var schedule = new FlightSchedule(departureTime, days);
+        var schedule = FlightSchedule.Create(departureTime, days);
         var price = Price.Create(basePrice); 
+        
         _flightRepository.AddFlight(new Flight(flightId, route, schedule, price));
     }
 
