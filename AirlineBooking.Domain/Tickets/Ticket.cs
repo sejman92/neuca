@@ -22,6 +22,7 @@ public class Ticket
         Departure = departure;
         Price = flight.BasePrice;
         Tenant = tenant;
+        AppliedDiscounts = new List<IDiscount>();
     }
 
     public static Ticket Create(Flight flight, Customer customer, DateTime departure, IEnumerable<IDiscount> activeDiscounts, Tenant tenant)
@@ -48,7 +49,7 @@ public class Ticket
 
     private void ApplyDiscount(IDiscount discount)
     {
-        Price.ApplyDiscount(discount.Value);
+        Price = Price.ApplyDiscount(discount.Value);
         Console.WriteLine($"Discount: {discount.Description} applied.");
         if (IsTenantA())
         {
@@ -61,7 +62,7 @@ public class Ticket
     
     private static void Validate(Flight flight, DateTime departure)
     {
-        if (flight.Schedule.DepartureDays.Contains(departure.Date.DayOfWeek))
+        if (!flight.Schedule.DepartureDays.Contains(departure.Date.DayOfWeek))
         {
             throw new ArgumentException($"Flight is not available for {departure:dd/MM/yyyy}.");
         }
